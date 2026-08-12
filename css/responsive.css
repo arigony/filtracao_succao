@@ -17,8 +17,15 @@
   .mode-scroll-hint { display: block; margin: 6px 4px 0; color: var(--muted); font-size: .68rem; text-align: right; }
   .workspace { grid-template-columns: 1fr; }
   .info-column { position: static; }
+  .experience-shell:not([data-active-mode="explore"]) .info-column { order: -1; }
+  .mobile-stage-link { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; margin: 0 0 10px; padding: 10px 14px; border: 1px solid #9bcdbb; border-radius: 13px; background: var(--green-soft); color: var(--green-dark); cursor: pointer; font-weight: 850; }
+  .experience-shell[data-active-mode="explore"] .mobile-stage-link { display: none; }
+  .experience-shell:not([data-active-mode="explore"]) .mobile-panel-link { display: inline-flex; align-items: center; }
+  .experience-shell:not([data-active-mode="explore"]) #labels-toggle,
+  .experience-shell:not([data-active-mode="explore"]) #reset-view { display: none !important; }
   .panel { min-height: 0; }
   .scene-wrap { height: 56vh; min-height: 430px; max-height: 620px; }
+  .experience-shell:not([data-active-mode="explore"]) .scene-wrap { height: 48vh; min-height: 350px; max-height: 540px; }
   .science-grid { grid-template-columns: 1fr; }
   .source-strip { align-items: flex-start; flex-direction: column; }
 }
@@ -41,10 +48,12 @@
   .state-chip { padding: 6px 8px; font-size: .66rem; }
   .view-tabs { padding-inline: 16px; }
   .scene-wrap { min-height: 420px; height: 59vh; }
+  .experience-shell:not([data-active-mode="explore"]) .scene-wrap { min-height: 350px; height: 50vh; }
   .gesture-hint { left: 10px; bottom: 62px; max-width: calc(100% - 20px); }
   .select-hint { right: 10px; top: 10px; }
   .scene-actions { left: 10px; right: 10px; bottom: 10px; justify-content: flex-end; }
   .scene-actions button { min-height: 44px; }
+  .assembly-option { min-height: 48px; font-size: .82rem; }
   .panel { padding: 20px 17px; border-radius: 19px; }
   .piece-shortcuts { grid-template-columns: 1fr 1fr; }
   .panel-navigation { grid-template-columns: 1fr 1.35fr; }

@@ -25,6 +25,10 @@ export function createQuickLookExperience({ stepCount = 8 } = {}) {
     return new URL(`${MODEL_DIRECTORY}filtracao-step-${safeIndex + 1}.usdz`, import.meta.url).href;
   }
 
+  function completeModelURL() {
+    return new URL(`${MODEL_DIRECTORY}filtracao-completa.usdz`, import.meta.url).href;
+  }
+
   function createStepLink({ stepIndex = 0, title = "Etapa da montagem" } = {}) {
     const safeIndex = normalizeStepIndex(stepIndex, normalizedStepCount);
     const link = document.createElement("a");
@@ -43,10 +47,20 @@ export function createQuickLookExperience({ stepCount = 8 } = {}) {
     return link;
   }
 
+  function createCompleteLink() {
+    const link = createStepLink({ stepIndex: normalizedStepCount - 1, title: "Abrir montagem completa em RA" });
+    link.href = completeModelURL();
+    link.dataset.step = "";
+    link.setAttribute("aria-label", "Abrir a montagem completa em realidade aumentada");
+    return link;
+  }
+
   return {
     supported,
     relSupported,
     modelURL,
-    createStepLink
+    completeModelURL,
+    createStepLink,
+    createCompleteLink
   };
 }

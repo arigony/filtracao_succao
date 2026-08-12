@@ -8,7 +8,7 @@ Experiência estática e responsiva para estudar a montagem e a operação segur
 - montagem guiada em oito etapas com escolha ativa dos componentes e bloqueio de avanço;
 - procedimento operacional em seis fases com bloqueios de segurança;
 - diagnóstico de exatamente cinco erros com resultado formativo e revisão das decisões incorretas;
-- realidade aumentada progressiva com fallback 3D;
+- realidade aumentada progressiva: WebXR, Scene Viewer no Android, Quick Look no iPhone/iPad e fallback 3D;
 - esquema visual acessível que preserva os módulos quando WebGL não está disponível;
 - guia científico em `referencia/filtracao-succao.html`.
 
@@ -21,6 +21,10 @@ Como alternativa, execute `npm run serve` e abra o endereço exibido. Não abra 
 ## Ilustrações do guia científico
 
 As quatro imagens de `referencia/img/` são infográficos SVG vetoriais e autocontidos. Para regenerá-los após alterar o desenho ou os textos, execute `node scripts/generate-reference-svgs.mjs`.
+
+## Modelos de realidade aumentada
+
+Os arquivos USDZ e GLB em `assets/models/` são gerados a partir da mesma montagem procedural do laboratório. Depois de alterar `js/apparatus.js`, execute `npm run generate:ar-models` para atualizar os modelos do iPhone/iPad e do Android.
 
 ## Referência científica
 

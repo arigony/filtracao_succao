@@ -1,5 +1,6 @@
 import { createApparatus } from "./apparatus.js";
 import { createARExperience } from "./ar.js";
+import { createAndroidSceneViewerExperience } from "./android-ar.js";
 import { GuidedAssemblyController } from "./assembly.js";
 import { createInteractions } from "./interactions.js";
 import { createQuickLookExperience } from "./quicklook.js";
@@ -323,6 +324,8 @@ async function bootstrap() {
 
   function setMode(mode) {
     activeMode = mode;
+    $("#experience").dataset.activeMode = mode;
+    $("#mobile-view-stage").textContent = mode === "guided" ? "Ver montagem 3D desta etapa ↓" : "Ver bancada 3D ↓";
     if (mode !== "explore" && vacuumDemo) {
       vacuumDemo = false;
       $("#vacuum-demo").textContent = "Mostrar o caminho do vácuo";
@@ -373,6 +376,8 @@ async function bootstrap() {
   }
 
   $$(".mode-button").forEach((button) => button.addEventListener("click", () => setMode(button.dataset.mode)));
+  $("#mobile-view-stage").addEventListener("click", () => $(".stage-column").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" }));
+  $("#mobile-back-panel").addEventListener("click", () => $(`#${activeMode}-panel`).scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" }));
   $$("[data-view]").forEach((button) => button.addEventListener("click", () => {
     $$("[data-view]").forEach((candidate) => candidate.setAttribute("aria-pressed", String(candidate === button)));
     apparatus.setExploreView(button.dataset.view);
@@ -509,14 +514,23 @@ async function bootstrap() {
       showComplete() {},
       restore() {},
       reposition() {},
-      setReducedMotion() {}
+      setReducedMotion() {},
+      get lastError() { return null; }
     };
 
   async function startAR(mode) {
+    const button = $(`[data-start-ar="${mode}"]`);
+    if (button) button.disabled = true;
     const started = await ar.start({ mode, stepIndex: guided.index });
-    if (!started) $("#ar-support-message").textContent = hasWebGL
-      ? "Este dispositivo não oferece WebXR imersivo. A experiência 3D permanece totalmente disponível."
-      : "Este navegador não oferece WebGL nem WebXR. Continue pela experiência visual e pelo guia científico.";
+    if (!started) {
+      const errorName = ar.lastError?.name;
+      $("#ar-support-message").textContent = errorName === "NotAllowedError"
+        ? "A câmera ou a RA foi bloqueada. Autorize o acesso nas permissões do navegador e tente novamente."
+        : errorName === "NotSupportedError"
+          ? "A RA direta deste navegador não está disponível. Use o botão específico do Android ou do iPhone abaixo."
+          : "Não foi possível iniciar a RA. Feche outros aplicativos que usam a câmera e tente novamente.";
+    }
+    if (button) button.disabled = false;
   }
   $$("[data-start-ar]").forEach((button) => button.addEventListener("click", () => startAR(button.dataset.startAr)));
   const arActions = {
@@ -533,14 +547,24 @@ async function bootstrap() {
   const quickLook = createQuickLookExperience({ stepCount: steps.length });
   if (quickLook.supported) {
     $("#quicklook-area").hidden = false;
+    $("#quicklook-complete").append(quickLook.createCompleteLink());
     steps.forEach((step, stepIndex) => $("#quicklook-step-grid").append(quickLook.createStepLink({ stepIndex, title: step.title })));
   }
+  const sceneViewer = createAndroidSceneViewerExperience();
+  if (sceneViewer.supported) {
+    sceneViewer.configureLink($("#android-ar-link"));
+    $("#android-ar-link").hidden = false;
+  }
   const webXRSupported = hasWebGL && await ar.checkSupport();
-  $("#ar-support-message").textContent = webXRSupported
-    ? "RA compatível: procure uma superfície horizontal bem iluminada."
-    : hasWebGL
-      ? "WebXR imersivo indisponível neste dispositivo; use a experiência 3D ou o Visualizador de RA no iPhone."
-      : "WebGL e WebXR indisponíveis neste navegador; use o esquema visual ou o Visualizador de RA no iPhone.";
+  $("#ar-support-message").textContent = sceneViewer.supported
+    ? webXRSupported
+      ? "Android compatível: use o botão principal ou abra a RA direta no navegador."
+      : "Android detectado: toque em “Abrir RA no Android” para posicionar a montagem na bancada."
+    : quickLook.supported
+      ? "iPhone ou iPad detectado: use o Visualizador de RA abaixo."
+      : webXRSupported
+        ? "RA compatível: procure uma superfície horizontal bem iluminada."
+        : "Abra esta página em um celular compatível para usar a RA; a montagem 3D continua disponível aqui.";
   $("#webxr-options").hidden = !webXRSupported;
 
   $("#motion-toggle").addEventListener("click", () => applyReducedMotion(!reducedMotion));

@@ -14,7 +14,8 @@ const TYPES = {
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
   ".svg": "image/svg+xml; charset=utf-8",
-  ".usdz": "model/vnd.usdz+zip"
+  ".usdz": "model/vnd.usdz+zip",
+  ".glb": "model/gltf-binary"
 };
 
 http.createServer(async (request, response) => {

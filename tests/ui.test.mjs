@@ -68,6 +68,26 @@ test("montagem, vácuo e diagnóstico oferecem feedback ativo", () => {
   assert.match(app, /requestFullscreen/);
 });
 
+test("o celular alterna entre instruções e bancada sem reiniciar o modo", () => {
+  const html = read("index.html");
+  const app = read("js/app.js");
+  const responsive = read("css/responsive.css");
+  assert.match(html, /id="mobile-view-stage"/);
+  assert.match(html, /id="mobile-back-panel"/);
+  assert.match(app, /dataset\.activeMode = mode/);
+  assert.match(app, /scrollIntoView/);
+  assert.match(responsive, /data-active-mode="explore"/);
+  assert.match(responsive, /\.info-column \{ order: -1; \}/);
+});
+
+test("a sessão WebXR começa diretamente a partir do toque", () => {
+  const ar = read("js/ar.js");
+  const start = ar.slice(ar.indexOf("async function start"), ar.indexOf("async function exit"));
+  assert.match(start, /navigator\.xr\.requestSession\("immersive-ar"/);
+  assert.doesNotMatch(start, /await checkSupport\(\)/);
+  assert.match(start, /catch \(error\)/);
+});
+
 test("o guia visual credita a fonte e não se apresenta como tradução", () => {
   const html = read("referencia/filtracao-succao.html");
   assert.match(html, /Não constitui tradução nem reprodução/);

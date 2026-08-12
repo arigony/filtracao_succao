@@ -80,6 +80,7 @@ h1, h2, h3, p { overflow-wrap: anywhere; }
 .select-hint { right: 18px; top: 18px; }
 .scene-actions { position: absolute; right: 18px; bottom: 18px; display: flex; gap: 7px; }
 .scene-actions button { padding: 8px 12px; background: rgba(255,255,255,.88); backdrop-filter: blur(8px); }
+.mobile-panel-link, .mobile-stage-link { display: none; }
 .scene-labels { position: absolute; inset: 0; pointer-events: none; }
 .scene-label { position: absolute; transform: translate(-50%,-50%); max-width: 150px; padding: 5px 8px; border: 1px solid #c8ddd5; border-radius: 8px; background: rgba(255,255,255,.9); color: var(--green-dark); font-size: .7rem; font-weight: 850; text-align: center; box-shadow: 0 6px 16px rgba(20,55,46,.11); }
 .scene-fallback { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 72px 22px 76px; }
@@ -173,7 +174,11 @@ button:disabled { opacity: .5; cursor: not-allowed; box-shadow: none !important;
 #diagnostic-panel.showing-result > :not(#diagnostic-result) { display: none !important; }
 .ar-options { display: grid; gap: 8px; margin: 20px 0; }
 .ar-options button { width: 100%; padding: 10px 12px; }
+.android-ar-button { display: grid; place-items: center; width: 100%; margin: 18px 0 10px; padding: 11px 14px; text-align: center; text-decoration: none; }
 .fallback-note { padding: 12px; border-radius: 12px; background: var(--blue-soft); color: #265e75 !important; font-size: .86rem; }
+#quicklook-complete { margin-bottom: 12px; }
+#quicklook-complete .quicklook-step-button { background: var(--green-dark); border-color: var(--green-dark); color: #fff; }
+#quicklook-complete .quicklook-step-button::after { content: attr(data-title); }
 .quicklook-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .quicklook-step-button { position: relative; min-height: 44px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 11px; background: #fff; color: var(--ink); text-decoration: none; font-size: .78rem; font-weight: 850; }
 .quicklook-step-button::after { content: attr(data-step) " · " attr(data-title); }

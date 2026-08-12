@@ -78,7 +78,7 @@ function createGuidedArrow(model, stepIndex) {
   return group;
 }
 
-function prepareStepForExport(stepIndex) {
+function prepareStepForExport(stepIndex, { addArrow = true } = {}) {
   const apparatus = createApparatus();
   apparatus.setReducedMotion(true);
   apparatus.setAssemblyStep(stepIndex, { animate: false, includeBench: false });
@@ -97,7 +97,7 @@ function prepareStepForExport(stepIndex) {
   scene.add(model);
   scene.updateMatrixWorld(true);
 
-  const arrow = createGuidedArrow(model, stepIndex);
+  const arrow = addArrow ? createGuidedArrow(model, stepIndex) : null;
   if (arrow) scene.add(arrow);
   scene.updateMatrixWorld(true);
 
@@ -119,8 +119,7 @@ function prepareStepForExport(stepIndex) {
   return scene;
 }
 
-async function exportStep(stepIndex) {
-  const scene = prepareStepForExport(stepIndex);
+async function exportScene(scene, filename) {
   const exporter = new USDZExporter();
   const data = await exporter.parseAsync(scene, {
     includeAnchoringProperties: true,
@@ -132,12 +131,15 @@ async function exportStep(stepIndex) {
     }
   });
 
-  const filename = `filtracao-step-${stepIndex + 1}.usdz`;
   const outputURL = new URL(filename, OUTPUT_DIR);
   await fs.writeFile(outputURL, Buffer.from(data));
   const stat = await fs.stat(outputURL);
   if (stat.size < 1024) throw new Error(`${filename} foi gerado com tamanho inválido.`);
   console.log(`${filename}: ${(stat.size / 1024 / 1024).toFixed(2)} MB`);
+}
+
+async function exportStep(stepIndex) {
+  await exportScene(prepareStepForExport(stepIndex), `filtracao-step-${stepIndex + 1}.usdz`);
 }
 
 await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -146,4 +148,6 @@ for (let index = 0; index < STEP_COUNT; index += 1) {
   await exportStep(index);
 }
 
-console.log("Oito modelos USDZ do iPhone gerados com sucesso.");
+await exportScene(prepareStepForExport(STEP_COUNT - 1, { addArrow: false }), "filtracao-completa.usdz");
+
+console.log("Modelos USDZ do iPhone gerados com sucesso.");

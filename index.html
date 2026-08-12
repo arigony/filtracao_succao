@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#eff6f3">
   <meta name="description" content="Laboratório 3D interativo para aprender a montagem e a operação segura da filtração por sucção.">
   <title>Laboratório Orgânico — Filtração por sucção</title>
-  <link rel="stylesheet" href="./css/main.css?v=20260812-2">
-  <link rel="stylesheet" href="./css/responsive.css?v=20260812-2">
+  <link rel="stylesheet" href="./css/main.css?v=20260812-3">
+  <link rel="stylesheet" href="./css/responsive.css?v=20260812-3">
 </head>
 <body>
   <a class="skip-link" href="#experience">Ir para a experiência</a>
@@ -22,7 +22,7 @@
     </div>
   </header>
 
-  <main id="experience" class="experience-shell">
+  <main id="experience" class="experience-shell" data-active-mode="explore">
     <nav class="mode-nav" aria-label="Modos da experiência">
       <button class="mode-button is-active" type="button" data-mode="explore" aria-pressed="true"><span>01</span> Explorar</button>
       <button class="mode-button" type="button" data-mode="guided" aria-pressed="false"><span>02</span> Montar</button>
@@ -67,6 +67,7 @@
           <p class="gesture-hint three-only">Arraste para girar · use dois dedos ou a roda para aproximar</p>
           <p class="select-hint three-only"><span aria-hidden="true">◎</span> Toque numa peça para conhecê-la</p>
           <div class="scene-actions">
+            <button id="mobile-back-panel" class="mobile-panel-link" type="button">Voltar às instruções</button>
             <button id="labels-toggle" class="three-only" type="button" aria-pressed="false">Mostrar rótulos</button>
             <button id="reset-view" class="three-only" type="button">Reenquadrar</button>
             <button id="fullscreen-toggle" type="button" aria-pressed="false">Tela cheia</button>
@@ -75,6 +76,7 @@
       </section>
 
       <aside class="info-column">
+        <button id="mobile-view-stage" class="mobile-stage-link" type="button" aria-controls="scene-wrap">Ver montagem 3D desta etapa ↓</button>
         <section id="explore-panel" class="panel">
           <p class="eyebrow">Componente em foco</p>
           <h2 id="piece-name">Kitassato de parede espessa</h2>
@@ -171,6 +173,7 @@
           <p class="eyebrow">Realidade aumentada</p>
           <h2>Leve a montagem à bancada</h2>
           <p>Em dispositivos compatíveis, posicione a montagem completa ou reveja as oito etapas na sua superfície real.</p>
+          <a id="android-ar-link" class="primary-action android-ar-button" hidden>Abrir RA no Android</a>
           <div id="webxr-options" class="ar-options">
             <button class="primary-action" type="button" data-start-ar="complete">Abrir montagem completa</button>
             <button type="button" data-start-ar="guided">Abrir passo a passo</button>
@@ -178,7 +181,8 @@
           <p id="ar-support-message" class="fallback-note">Verificando compatibilidade com RA…</p>
           <div id="quicklook-area" hidden>
             <h3>iPhone e iPad</h3>
-            <p>Abra uma etapa diretamente no Visualizador de RA.</p>
+            <p>Abra a montagem completa ou uma etapa diretamente no Visualizador de RA.</p>
+            <div id="quicklook-complete"></div>
             <div id="quicklook-step-grid" class="quicklook-grid"></div>
           </div>
           <div class="reference-card"><strong>Sem RA?</strong><p>A experiência 3D completa continua disponível. Use também o <a href="./referencia/filtracao-succao.html">guia visual científico</a>.</p></div>
@@ -229,7 +233,7 @@
       }
       const application = document.createElement("script");
       application.type = "module";
-      application.src = "./js/app.js?v=20260812-2";
+      application.src = "./js/app.js?v=20260812-3";
       document.body.append(application);
     })();
   </script>

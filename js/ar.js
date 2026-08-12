@@ -100,6 +100,8 @@ export function createARExperience({
   const localCameraPosition = new THREE.Vector3();
 
   let session = null;
+  let supportPromise = null;
+  let lastError = null;
   let viewerSpace = null;
   let hitTestSource = null;
   let placed = false;
@@ -118,13 +120,12 @@ export function createARExperience({
   let instructionTimer = null;
   let currentInstruction = "";
 
-  async function checkSupport() {
-    if (!window.isSecureContext || !navigator.xr) return false;
-    try {
-      return await navigator.xr.isSessionSupported("immersive-ar");
-    } catch {
-      return false;
+  function checkSupport() {
+    if (!window.isSecureContext || !navigator.xr) return Promise.resolve(false);
+    if (!supportPromise) {
+      supportPromise = navigator.xr.isSessionSupported("immersive-ar").catch(() => false);
     }
+    return supportPromise;
   }
 
   function setInstruction(message, { duration = 0 } = {}) {
@@ -365,40 +366,54 @@ export function createARExperience({
 
   async function start({ mode = "complete", stepIndex = 0 } = {}) {
     if (session) return true;
-    if (!(await checkSupport())) return false;
-    session = await navigator.xr.requestSession("immersive-ar", {
-      requiredFeatures: ["hit-test"],
-      optionalFeatures: ["dom-overlay", "local-floor"],
-      domOverlay: { root: overlay }
-    });
-    viewerSpace = await session.requestReferenceSpace("viewer");
-    hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
-    session.addEventListener("select", onSelect);
-    session.addEventListener("end", onSessionEnd, { once: true });
-    await renderer.xr.setSession(session);
-    setXRFrameHandler(onXRFrame);
-
-    placed = false;
-    pointers.clear();
-    stableHitFrames = 0;
-    lastHitPosition.set(Number.POSITIVE_INFINITY, 0, 0);
-    calculateInitialScale();
-    if (mode === "guided") {
-      guidedIndex = Math.max(0, Math.min(stepIndex, stepCount - 1));
-      lastGuidedIndex = guidedIndex;
-      applyGuidedStep(guidedIndex, { animate: false });
-    } else {
-      showComplete();
+    if (!window.isSecureContext || !navigator.xr) {
+      lastError = new Error("WebXR indisponível neste navegador.");
+      lastError.name = "NotSupportedError";
+      return false;
     }
-    anchor.scale.setScalar(scale);
-    syncSurfaceSupport();
-    anchor.visible = false;
-    contactShadow.visible = false;
-    reticle.visible = false;
-    overlay.hidden = false;
-    document.body.classList.add("xr-active");
-    setInstruction(FIND_SURFACE_MESSAGE);
-    return true;
+    lastError = null;
+    try {
+      // requestSession precisa ser chamado diretamente durante o toque do usuário.
+      session = await navigator.xr.requestSession("immersive-ar", {
+        requiredFeatures: ["hit-test"],
+        optionalFeatures: ["dom-overlay", "local-floor"],
+        domOverlay: { root: overlay }
+      });
+      session.addEventListener("end", onSessionEnd, { once: true });
+      session.addEventListener("select", onSelect);
+      viewerSpace = await session.requestReferenceSpace("viewer");
+      hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
+      await renderer.xr.setSession(session);
+      setXRFrameHandler(onXRFrame);
+
+      placed = false;
+      pointers.clear();
+      stableHitFrames = 0;
+      lastHitPosition.set(Number.POSITIVE_INFINITY, 0, 0);
+      calculateInitialScale();
+      if (mode === "guided") {
+        guidedIndex = Math.max(0, Math.min(stepIndex, stepCount - 1));
+        lastGuidedIndex = guidedIndex;
+        applyGuidedStep(guidedIndex, { animate: false });
+      } else {
+        showComplete();
+      }
+      anchor.scale.setScalar(scale);
+      syncSurfaceSupport();
+      anchor.visible = false;
+      contactShadow.visible = false;
+      reticle.visible = false;
+      overlay.hidden = false;
+      document.body.classList.add("xr-active");
+      setInstruction(FIND_SURFACE_MESSAGE);
+      return true;
+    } catch (error) {
+      lastError = error;
+      if (session) {
+        try { await session.end(); } catch { onSessionEnd(); }
+      }
+      return false;
+    }
   }
 
   async function exit() {
@@ -477,6 +492,7 @@ export function createARExperience({
     get guidedIndex() { return guidedIndex; },
     get mode() { return viewMode; },
     get scale() { return scale; },
-    get initialScale() { return initialScale; }
+    get initialScale() { return initialScale; },
+    get lastError() { return lastError; }
   };
 }

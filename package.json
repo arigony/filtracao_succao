@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "serve": "node tests/server.mjs",
+    "generate:ar-models": "node scripts/generate-ios-usdz.mjs && node scripts/generate-android-glb.mjs",
     "test": "node --test tests/apparatus.test.mjs tests/data.test.mjs tests/procedure.test.mjs tests/quicklook.test.mjs tests/ui.test.mjs"
   },
   "engines": {
