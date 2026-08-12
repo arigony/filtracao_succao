@@ -5,10 +5,11 @@ Experiência estática e responsiva para estudar a montagem e a operação segur
 ## Experiências
 
 - exploração da montagem e das peças;
-- montagem guiada em oito etapas;
+- montagem guiada em oito etapas com escolha ativa dos componentes e bloqueio de avanço;
 - procedimento operacional em seis fases com bloqueios de segurança;
-- diagnóstico de exatamente cinco erros;
+- diagnóstico de exatamente cinco erros com resultado formativo e revisão das decisões incorretas;
 - realidade aumentada progressiva com fallback 3D;
+- esquema visual acessível que preserva os módulos quando WebGL não está disponível;
 - guia científico em `referencia/filtracao-succao.html`.
 
 ## Execução local

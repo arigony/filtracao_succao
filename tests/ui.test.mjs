@@ -46,6 +46,28 @@ test("a cena expõe controles equivalentes para mouse, toque e teclado", () => {
   assert.match(css, /#scene-canvas[^}]*touch-action:\s*none/s);
 });
 
+test("a experiência preserva os módulos quando WebGL não está disponível", () => {
+  const html = read("index.html");
+  const app = read("js/app.js");
+  assert.match(html, /id="scene-fallback"/);
+  assert.match(html, /id="webgl-notice"/);
+  assert.match(app, /function supportsWebGL\(\)/);
+  assert.match(app, /createFallbackApparatus/);
+  assert.match(app, /hasWebGL \? createARExperience/);
+});
+
+test("montagem, vácuo e diagnóstico oferecem feedback ativo", () => {
+  const html = read("index.html");
+  const app = read("js/app.js");
+  assert.match(html, /id="assembly-options"/);
+  assert.match(html, /id="vacuum-explanation"/);
+  assert.match(html, /id="diagnostic-result"/);
+  assert.match(html, /id="fullscreen-toggle"/);
+  assert.match(app, /completedGuidedSteps/);
+  assert.match(app, /showDiagnosticResult/);
+  assert.match(app, /requestFullscreen/);
+});
+
 test("o guia visual credita a fonte e não se apresenta como tradução", () => {
   const html = read("referencia/filtracao-succao.html");
   assert.match(html, /Não constitui tradução nem reprodução/);

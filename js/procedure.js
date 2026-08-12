@@ -95,11 +95,14 @@ export class DiagnosticController {
   get current() { return this.errors[this.index]; }
   get progress() { return `${this.index + 1} de ${this.errors.length}`; }
   get isLast() { return this.index === this.errors.length - 1; }
+  get score() { return [...this.answered.values()].filter(Boolean).length; }
+  get isComplete() { return this.answered.size === this.errors.length; }
+  get incorrectErrors() { return this.errors.filter((error) => this.answered.get(error.id) === false); }
 
   answer(choiceIndex) {
     const choice = this.current.choices[choiceIndex];
     if (!choice) return { correct: false, revealed: false };
-    this.answered.set(this.current.id, Boolean(choice.correct));
+    if (!this.answered.has(this.current.id)) this.answered.set(this.current.id, Boolean(choice.correct));
     return { correct: Boolean(choice.correct), revealed: true, error: this.current };
   }
 

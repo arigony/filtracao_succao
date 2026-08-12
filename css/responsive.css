@@ -11,7 +11,10 @@
   .quiet-button { padding: 8px 10px; }
   .quiet-button span { display: none; }
   .mode-nav { grid-template-columns: repeat(5, minmax(85px, 1fr)); overflow-x: auto; justify-content: start; }
+  .mode-nav { scroll-snap-type: x proximity; }
   .mode-button { padding: 8px 10px; white-space: nowrap; }
+  .mode-button { scroll-snap-align: start; }
+  .mode-scroll-hint { display: block; margin: 6px 4px 0; color: var(--muted); font-size: .68rem; text-align: right; }
   .workspace { grid-template-columns: 1fr; }
   .info-column { position: static; }
   .panel { min-height: 0; }
@@ -50,6 +53,10 @@
   .vacuum-controls { grid-template-columns: 1fr; }
   .ar-toolbar { bottom: max(10px, env(safe-area-inset-bottom)); }
   .ar-toolbar button { min-height: 44px; }
+  .scene-fallback { padding: 94px 12px 88px; }
+  .scene-fallback figcaption { left: 10px; bottom: 62px; max-width: calc(100% - 20px); }
+  .webgl-notice { top: 10px; left: 10px; max-width: calc(100% - 20px); }
+  .vacuum-explanation li { grid-template-columns: 1fr; gap: 3px; }
 }
 
 @media (max-width: 390px) {

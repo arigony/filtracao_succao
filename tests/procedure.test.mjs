@@ -46,3 +46,15 @@ test("o diagnóstico não avança antes da tentativa", () => {
   assert.equal(controller.next(), true);
   assert.equal(controller.index, 1);
 });
+
+test("o diagnóstico calcula o resultado formativo sem alterar a primeira resposta", () => {
+  const controller = new DiagnosticController(json("data/diagnostic-errors.json"));
+  controller.errors.forEach((_error, errorIndex) => {
+    controller.index = errorIndex;
+    const correctIndex = controller.current.choices.findIndex((choice) => choice.correct);
+    controller.answer(errorIndex === 0 ? (correctIndex + 1) % controller.current.choices.length : correctIndex);
+  });
+  assert.equal(controller.isComplete, true);
+  assert.equal(controller.score, 4);
+  assert.deepEqual(controller.incorrectErrors.map((error) => error.id), ["wrong-flask"]);
+});

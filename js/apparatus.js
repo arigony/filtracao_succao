@@ -406,14 +406,15 @@ export function createApparatus() {
   }
 
   function setAssemblyStep(index, { animate = true, includeBench = true } = {}) {
-    const stepIndex = THREE.MathUtils.clamp(index, 0, STEP_PIECES.length - 1);
+    const stepIndex = THREE.MathUtils.clamp(index, -1, STEP_PIECES.length - 1);
     animations.length = 0;
     components.forEach((_component, id) => restoreTransform(id));
-    const visible = new Set(STEP_PIECES[stepIndex]);
+    const stepPieces = stepIndex < 0 ? ["bench"] : STEP_PIECES[stepIndex];
+    const visible = new Set(stepPieces);
     if (!includeBench) visible.delete("bench");
     components.forEach((component, id) => { component.visible = visible.has(id); });
-    const previous = stepIndex ? STEP_PIECES[stepIndex - 1] : [];
-    const introduced = STEP_PIECES[stepIndex].filter((id) => id !== "bench" && !previous.includes(id));
+    const previous = stepIndex > 0 ? STEP_PIECES[stepIndex - 1] : [];
+    const introduced = stepIndex < 0 ? [] : STEP_PIECES[stepIndex].filter((id) => id !== "bench" && !previous.includes(id));
     if (animate && !reducedMotion) introduced.forEach((id, offsetIndex) => {
       const component = components.get(id);
       const target = snapshot(component);

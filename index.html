@@ -30,6 +30,7 @@
       <button class="mode-button" type="button" data-mode="diagnostic" aria-pressed="false"><span>04</span> Diagnosticar</button>
       <button class="mode-button" type="button" data-mode="ar" aria-pressed="false"><span>05</span> Ver em RA</button>
     </nav>
+    <p class="mode-scroll-hint" aria-hidden="true">Deslize para conhecer todos os modos →</p>
 
     <div class="workspace">
       <section class="stage-column" aria-labelledby="stage-title">
@@ -47,6 +48,15 @@
         <div class="scene-wrap" id="scene-wrap">
           <canvas id="scene-canvas" aria-label="Modelo tridimensional interativo de uma montagem de filtração por sucção"></canvas>
           <div id="scene-labels" class="scene-labels" hidden aria-hidden="true"></div>
+          <figure id="scene-fallback" class="scene-fallback" hidden>
+            <img src="./referencia/img/montagem.svg" alt="Esquema da montagem completa de filtração por sucção, com kitassato, funil de Büchner, armadilha com respiro e aspirador de água.">
+            <figcaption><strong id="fallback-title">Montagem completa</strong><span id="fallback-description">Use os controles da experiência para estudar cada etapa.</span></figcaption>
+          </figure>
+          <aside id="webgl-notice" class="webgl-notice" hidden role="status">
+            <strong>Visualização 3D indisponível neste navegador</strong>
+            <span>A montagem, a operação e o diagnóstico continuam funcionando com o esquema visual.</span>
+            <button type="button" id="retry-3d">Tentar ativar o 3D novamente</button>
+          </aside>
           <aside id="file-protocol-help" class="file-protocol-help" hidden role="status">
             <p class="eyebrow">Abertura local</p>
             <h2>O laboratório 3D precisa de um servidor local</h2>
@@ -54,11 +64,12 @@
             <p class="file-protocol-note">A página publicada no GitHub Pages funciona normalmente.</p>
           </aside>
           <p class="scene-status" id="scene-status" role="status">Preparando a bancada virtual…</p>
-          <p class="gesture-hint">Arraste para girar · use dois dedos ou a roda para aproximar</p>
-          <p class="select-hint"><span aria-hidden="true">◎</span> Toque numa peça para conhecê-la</p>
+          <p class="gesture-hint three-only">Arraste para girar · use dois dedos ou a roda para aproximar</p>
+          <p class="select-hint three-only"><span aria-hidden="true">◎</span> Toque numa peça para conhecê-la</p>
           <div class="scene-actions">
-            <button id="labels-toggle" type="button" aria-pressed="false">Mostrar rótulos</button>
-            <button id="reset-view" type="button">Reenquadrar</button>
+            <button id="labels-toggle" class="three-only" type="button" aria-pressed="false">Mostrar rótulos</button>
+            <button id="reset-view" class="three-only" type="button">Reenquadrar</button>
+            <button id="fullscreen-toggle" type="button" aria-pressed="false">Tela cheia</button>
           </div>
         </div>
       </section>
@@ -81,6 +92,15 @@
           </div>
           <button class="primary-action" id="vacuum-demo" type="button">Mostrar o caminho do vácuo</button>
           <div class="sequence-note"><span aria-hidden="true">→</span><p><strong>Circuito essencial</strong>kitassato → armadilha com respiro → aspirador</p></div>
+          <div id="vacuum-explanation" class="vacuum-explanation" hidden>
+            <div class="flow-legend" aria-label="Legenda do circuito"><span><i class="is-blue"></i> Ar sob sucção</span><span><i class="is-green"></i> Entrada de ar pelo respiro</span></div>
+            <ol>
+              <li><strong>1. Kitassato</strong><span>O ar atravessa a torta e o papel; o líquido permanece no frasco.</span></li>
+              <li><strong>2. Armadilha</strong><span>Interrompe o caminho direto de líquidos e protege o sistema.</span></li>
+              <li><strong>3. Aspirador</strong><span>O fluxo de água gera a diferença de pressão que mantém a sucção.</span></li>
+            </ol>
+            <p><strong>Para encerrar:</strong> abra o respiro antes de desligar o aspirador.</p>
+          </div>
         </section>
 
         <section id="guided-panel" class="panel" hidden>
@@ -90,6 +110,11 @@
           <p id="step-instruction" class="instruction"></p>
           <div class="principle-card"><strong>Por quê?</strong><p id="step-principle"></p></div>
           <div id="guided-checks" class="checklist" hidden><h3>Verificação crítica</h3><ul id="guided-check-list"></ul></div>
+          <section class="assembly-challenge" aria-labelledby="assembly-challenge-title">
+            <h3 id="assembly-challenge-title">Qual componente deve ser colocado agora?</h3>
+            <div id="assembly-options" class="assembly-options"></div>
+            <p id="assembly-feedback" class="feedback" role="status"></p>
+          </section>
           <div class="panel-navigation">
             <button id="previous-step" type="button">Anterior</button>
             <button id="next-step" class="primary-action" type="button">Próxima etapa</button>
@@ -133,6 +158,13 @@
           </div>
           <p id="diagnostic-feedback" class="feedback" role="status"></p>
           <button id="diagnostic-next" class="primary-action" type="button" disabled>Próximo erro</button>
+          <section id="diagnostic-result" class="diagnostic-result" hidden aria-live="polite">
+            <p class="eyebrow">Resultado formativo</p>
+            <h3 id="diagnostic-result-title"></h3>
+            <p id="diagnostic-result-copy"></p>
+            <ul id="diagnostic-review-list"></ul>
+            <button id="diagnostic-restart" class="primary-action" type="button">Refazer os cinco desafios</button>
+          </section>
         </section>
 
         <section id="ar-panel" class="panel" hidden>
