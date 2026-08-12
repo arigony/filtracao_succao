@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#eff6f3">
   <meta name="description" content="Laboratório 3D interativo para aprender a montagem e a operação segura da filtração por sucção.">
   <title>Laboratório Orgânico — Filtração por sucção</title>
-  <link rel="stylesheet" href="./css/main.css?v=20260812-3">
-  <link rel="stylesheet" href="./css/responsive.css?v=20260812-3">
+  <link rel="stylesheet" href="./css/main.css?v=20260812-4">
+  <link rel="stylesheet" href="./css/responsive.css?v=20260812-4">
 </head>
 <body>
   <a class="skip-link" href="#experience">Ir para a experiência</a>
@@ -172,19 +172,9 @@
         <section id="ar-panel" class="panel" hidden>
           <p class="eyebrow">Realidade aumentada</p>
           <h2>Leve a montagem à bancada</h2>
-          <p>Em dispositivos compatíveis, posicione a montagem completa ou reveja as oito etapas na sua superfície real.</p>
-          <a id="android-ar-link" class="primary-action android-ar-button" hidden>Abrir RA no Android</a>
-          <div id="webxr-options" class="ar-options">
-            <button class="primary-action" type="button" data-start-ar="complete">Abrir montagem completa</button>
-            <button type="button" data-start-ar="guided">Abrir passo a passo</button>
-          </div>
+          <p>Em dispositivos compatíveis, abra a mesma experiência WebXR usada no BatteryAR, encontre uma superfície e posicione a montagem.</p>
+          <div id="webxr-options" class="ar-options"></div>
           <p id="ar-support-message" class="fallback-note">Verificando compatibilidade com RA…</p>
-          <div id="quicklook-area" hidden>
-            <h3>iPhone e iPad</h3>
-            <p>Abra a montagem completa ou uma etapa diretamente no Visualizador de RA.</p>
-            <div id="quicklook-complete"></div>
-            <div id="quicklook-step-grid" class="quicklook-grid"></div>
-          </div>
           <div class="reference-card"><strong>Sem RA?</strong><p>A experiência 3D completa continua disponível. Use também o <a href="./referencia/filtracao-succao.html">guia visual científico</a>.</p></div>
         </section>
       </aside>
@@ -206,7 +196,7 @@
     </section>
   </main>
 
-  <div id="ar-overlay" class="ar-overlay" hidden data-ar-interface>
+  <div id="ar-overlay" class="ar-overlay" aria-hidden="true" data-ar-interface>
     <p id="ar-instruction">Mova o dispositivo para encontrar uma superfície.</p>
     <div class="ar-toolbar" data-ar-interface>
       <button type="button" data-ar-action="previous">Anterior</button>
@@ -233,7 +223,7 @@
       }
       const application = document.createElement("script");
       application.type = "module";
-      application.src = "./js/app.js?v=20260812-3";
+      application.src = "./js/app.js?v=20260812-4";
       document.body.append(application);
     })();
   </script>

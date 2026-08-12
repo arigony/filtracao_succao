@@ -80,12 +80,18 @@ test("o celular alterna entre instruções e bancada sem reiniciar o modo", () =
   assert.match(responsive, /\.info-column \{ order: -1; \}/);
 });
 
-test("a sessão WebXR começa diretamente a partir do toque", () => {
+test("a sessão WebXR usa o mesmo ARButton oficial do BatteryAR", () => {
+  const app = read("js/app.js");
   const ar = read("js/ar.js");
+  const arButton = read("vendor/addons/webxr/ARButton.js");
   const start = ar.slice(ar.indexOf("async function start"), ar.indexOf("async function exit"));
-  assert.match(start, /navigator\.xr\.requestSession\("immersive-ar"/);
-  assert.doesNotMatch(start, /await checkSupport\(\)/);
-  assert.match(start, /catch \(error\)/);
+  assert.match(app, /import \{ ARButton \}/);
+  assert.match(app, /ARButton\.createButton\(sceneApi\.renderer/);
+  assert.match(app, /requiredFeatures:\s*\["hit-test"\]/);
+  assert.match(app, /domOverlay:\s*\{ root: overlay \}/);
+  assert.match(arButton, /navigator\.xr\.requestSession\( 'immersive-ar', sessionInit \)/);
+  assert.match(start, /renderer\.xr\.getSession\(\)/);
+  assert.doesNotMatch(start, /navigator\.xr\.requestSession/);
 });
 
 test("o guia visual credita a fonte e não se apresenta como tradução", () => {

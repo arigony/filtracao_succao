@@ -1,11 +1,10 @@
 import { createApparatus } from "./apparatus.js";
 import { createARExperience } from "./ar.js";
-import { createAndroidSceneViewerExperience } from "./android-ar.js";
 import { GuidedAssemblyController } from "./assembly.js";
 import { createInteractions } from "./interactions.js";
-import { createQuickLookExperience } from "./quicklook.js";
 import { DiagnosticController, FiltrationProcedureController } from "./procedure.js";
 import { createLabelManager, createScene } from "./scene.js";
+import { ARButton } from "../vendor/addons/webxr/ARButton.js";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -505,7 +504,6 @@ async function bootstrap() {
       },
       onExit: () => { $("#scene-status").hidden = true; setMode("ar"); }
     }) : {
-      async checkSupport() { return false; },
       async start() { return false; },
       async exit() {},
       previousStep() {},
@@ -518,21 +516,6 @@ async function bootstrap() {
       get lastError() { return null; }
     };
 
-  async function startAR(mode) {
-    const button = $(`[data-start-ar="${mode}"]`);
-    if (button) button.disabled = true;
-    const started = await ar.start({ mode, stepIndex: guided.index });
-    if (!started) {
-      const errorName = ar.lastError?.name;
-      $("#ar-support-message").textContent = errorName === "NotAllowedError"
-        ? "A câmera ou a RA foi bloqueada. Autorize o acesso nas permissões do navegador e tente novamente."
-        : errorName === "NotSupportedError"
-          ? "A RA direta deste navegador não está disponível. Use o botão específico do Android ou do iPhone abaixo."
-          : "Não foi possível iniciar a RA. Feche outros aplicativos que usam a câmera e tente novamente.";
-    }
-    if (button) button.disabled = false;
-  }
-  $$("[data-start-ar]").forEach((button) => button.addEventListener("click", () => startAR(button.dataset.startAr)));
   const arActions = {
     previous: () => ar.previousStep(),
     next: () => ar.nextStep(),
@@ -544,28 +527,45 @@ async function bootstrap() {
   };
   $$("[data-ar-action]").forEach((button) => button.addEventListener("click", () => arActions[button.dataset.arAction]?.()));
 
-  const quickLook = createQuickLookExperience({ stepCount: steps.length });
-  if (quickLook.supported) {
-    $("#quicklook-area").hidden = false;
-    $("#quicklook-complete").append(quickLook.createCompleteLink());
-    steps.forEach((step, stepIndex) => $("#quicklook-step-grid").append(quickLook.createStepLink({ stepIndex, title: step.title })));
+  if (hasWebGL) {
+    const arButton = ARButton.createButton(sceneApi.renderer, {
+      requiredFeatures: ["hit-test"],
+      optionalFeatures: ["dom-overlay"],
+      domOverlay: { root: overlay }
+    });
+    const localizeARButton = () => {
+      const labels = {
+        "START AR": "ABRIR EM REALIDADE AUMENTADA",
+        "STOP AR": "SAIR DA REALIDADE AUMENTADA",
+        "AR NOT SUPPORTED": "RA NÃO COMPATÍVEL",
+        "AR NOT ALLOWED": "RA NÃO AUTORIZADA",
+        "WEBXR NOT AVAILABLE": "WEBXR NÃO DISPONÍVEL",
+        "WEBXR NEEDS HTTPS": "A RA PRECISA DE HTTPS"
+      };
+      const current = arButton.textContent.trim();
+      const label = labels[current];
+      if (label) arButton.textContent = label;
+      if (current === "START AR") {
+        $("#ar-support-message").textContent = "RA compatível: mova o celular lentamente e toque na superfície para posicionar a montagem.";
+      }
+      if (["AR NOT SUPPORTED", "AR NOT ALLOWED", "WEBXR NOT AVAILABLE"].includes(current)) {
+        $("#ar-support-message").textContent = "Este aparelho ou navegador não oferece WebXR imersivo. A experiência 3D continua disponível.";
+      }
+    };
+    new MutationObserver(localizeARButton).observe(arButton, { childList: true, subtree: true, characterData: true });
+    localizeARButton();
+    $("#webxr-options").append(arButton);
+    sceneApi.renderer.xr.addEventListener("sessionstart", async () => {
+      const started = await ar.start({ mode: "complete", stepIndex: guided.index });
+      if (!started) {
+        $("#ar-support-message").textContent = "Não foi possível preparar a superfície de RA. Encerre a sessão e tente novamente.";
+        await sceneApi.renderer.xr.getSession()?.end();
+      }
+    });
+  } else {
+    $("#webxr-options").hidden = true;
+    $("#ar-support-message").textContent = "WebGL e WebXR não estão disponíveis neste navegador. Continue pelo esquema visual.";
   }
-  const sceneViewer = createAndroidSceneViewerExperience();
-  if (sceneViewer.supported) {
-    sceneViewer.configureLink($("#android-ar-link"));
-    $("#android-ar-link").hidden = false;
-  }
-  const webXRSupported = hasWebGL && await ar.checkSupport();
-  $("#ar-support-message").textContent = sceneViewer.supported
-    ? webXRSupported
-      ? "Android compatível: use o botão principal ou abra a RA direta no navegador."
-      : "Android detectado: toque em “Abrir RA no Android” para posicionar a montagem na bancada."
-    : quickLook.supported
-      ? "iPhone ou iPad detectado: use o Visualizador de RA abaixo."
-      : webXRSupported
-        ? "RA compatível: procure uma superfície horizontal bem iluminada."
-        : "Abra esta página em um celular compatível para usar a RA; a montagem 3D continua disponível aqui.";
-  $("#webxr-options").hidden = !webXRSupported;
 
   $("#motion-toggle").addEventListener("click", () => applyReducedMotion(!reducedMotion));
   applyReducedMotion(reducedMotion);

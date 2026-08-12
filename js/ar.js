@@ -100,7 +100,6 @@ export function createARExperience({
   const localCameraPosition = new THREE.Vector3();
 
   let session = null;
-  let supportPromise = null;
   let lastError = null;
   let viewerSpace = null;
   let hitTestSource = null;
@@ -119,14 +118,6 @@ export function createARExperience({
   let stableHitFrames = 0;
   let instructionTimer = null;
   let currentInstruction = "";
-
-  function checkSupport() {
-    if (!window.isSecureContext || !navigator.xr) return Promise.resolve(false);
-    if (!supportPromise) {
-      supportPromise = navigator.xr.isSessionSupported("immersive-ar").catch(() => false);
-    }
-    return supportPromise;
-  }
 
   function setInstruction(message, { duration = 0 } = {}) {
     if (instructionTimer) clearTimeout(instructionTimer);
@@ -366,24 +357,14 @@ export function createARExperience({
 
   async function start({ mode = "complete", stepIndex = 0 } = {}) {
     if (session) return true;
-    if (!window.isSecureContext || !navigator.xr) {
-      lastError = new Error("WebXR indisponível neste navegador.");
-      lastError.name = "NotSupportedError";
-      return false;
-    }
+    session = renderer.xr.getSession();
+    if (!session) return false;
     lastError = null;
     try {
-      // requestSession precisa ser chamado diretamente durante o toque do usuário.
-      session = await navigator.xr.requestSession("immersive-ar", {
-        requiredFeatures: ["hit-test"],
-        optionalFeatures: ["dom-overlay", "local-floor"],
-        domOverlay: { root: overlay }
-      });
       session.addEventListener("end", onSessionEnd, { once: true });
       session.addEventListener("select", onSelect);
       viewerSpace = await session.requestReferenceSpace("viewer");
       hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
-      await renderer.xr.setSession(session);
       setXRFrameHandler(onXRFrame);
 
       placed = false;
@@ -403,7 +384,7 @@ export function createARExperience({
       anchor.visible = false;
       contactShadow.visible = false;
       reticle.visible = false;
-      overlay.hidden = false;
+      overlay.setAttribute("aria-hidden", "false");
       document.body.classList.add("xr-active");
       setInstruction(FIND_SURFACE_MESSAGE);
       return true;
@@ -433,7 +414,7 @@ export function createARExperience({
     lastPinchDistance = 0;
     reticle.visible = false;
     contactShadow.visible = false;
-    overlay.hidden = true;
+    overlay.setAttribute("aria-hidden", "true");
     instruction.classList.remove("is-hidden");
     document.body.classList.remove("xr-active");
     setXRFrameHandler(null);
@@ -476,7 +457,6 @@ export function createARExperience({
   }
 
   return {
-    checkSupport,
     start,
     exit,
     reposition,
