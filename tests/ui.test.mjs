@@ -29,7 +29,7 @@ test("o projeto permanece estático e usa caminhos relativos", () => {
   assert.doesNotMatch(html, /src="\//);
   assert.doesNotMatch(html, /href="\//);
   assert.match(html, /application\.type = "module"/);
-  assert.match(html, /application\.src = "\.\/js\/app\.js"/);
+  assert.match(html, /application\.src = "\.\/js\/app\.js\?v=\d{8}-\d+"/);
   assert.match(html, /location\.protocol === "file:"/);
 });
 
