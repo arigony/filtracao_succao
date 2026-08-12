@@ -1,0 +1,131 @@
+[
+  {
+    "id": "bench",
+    "name": "Bancada aberta",
+    "alternativeName": "Superfície de trabalho",
+    "function": "Mantém a montagem organizada, estável e afastada da borda.",
+    "correctPosition": "Plana, seca e com espaço livre ao redor do circuito.",
+    "commonError": "Montar perto da borda ou deixar a mangueira puxar o conjunto."
+  },
+  {
+    "id": "stand",
+    "name": "Suporte universal",
+    "alternativeName": "Base e haste metálica",
+    "function": "Recebe a garra que estabiliza o frasco de filtração.",
+    "correctPosition": "Base apoiada integralmente na bancada, com haste vertical ao lado do kitassato.",
+    "commonError": "Usar o suporte para forçar o alinhamento ou deixar a base instável."
+  },
+  {
+    "id": "clamp",
+    "name": "Garra de estabilização",
+    "alternativeName": "Garra para kitassato",
+    "function": "Evita que o kitassato tombe quando a mangueira é conectada ou movimentada.",
+    "correctPosition": "Contato suave no gargalo, abaixo do adaptador e sem comprimir o vidro.",
+    "commonError": "Apertar excessivamente, cobrir o adaptador ou prender o corpo do frasco."
+  },
+  {
+    "id": "filter-flask",
+    "name": "Kitassato de parede espessa",
+    "alternativeName": "Frasco de filtração com braço lateral",
+    "function": "Recebe o filtrado e suporta a diferença de pressão durante a sucção.",
+    "correctPosition": "Vertical, preso ao suporte e com o braço lateral livre para a mangueira.",
+    "commonError": "Substituir por Erlenmeyer comum ou operar sem estabilização."
+  },
+  {
+    "id": "vacuum-hose-in",
+    "name": "Mangueira do kitassato",
+    "alternativeName": "Kitassato → armadilha",
+    "function": "Conduz o ar do braço lateral até a armadilha de vácuo.",
+    "correctPosition": "Mangueira de parede espessa, curta, bem encaixada e sem dobra.",
+    "commonError": "Conectar diretamente ao aspirador, dobrar ou deixar a ponta frouxa."
+  },
+  {
+    "id": "vacuum-trap",
+    "name": "Armadilha de vácuo",
+    "alternativeName": "Frasco de segurança",
+    "function": "Interrompe a passagem direta entre o sistema de filtração e a linha de água.",
+    "correctPosition": "Entre o kitassato e o aspirador, estável e com respiro controlado.",
+    "commonError": "Omitir a armadilha ou inverter conexões de forma que líquido alcance a linha."
+  },
+  {
+    "id": "vent-clamp",
+    "name": "Respiro com pinça",
+    "alternativeName": "Abertura controlada para a atmosfera",
+    "function": "Permite desfazer o vácuo antes de lavar a torta ou desligar o aspirador.",
+    "correctPosition": "Acessível no circuito da armadilha e fechado apenas durante a sucção.",
+    "commonError": "Desligar o aspirador mantendo o circuito fechado."
+  },
+  {
+    "id": "vacuum-hose-out",
+    "name": "Mangueira do aspirador",
+    "alternativeName": "Armadilha → aspirador",
+    "function": "Conecta a armadilha à fonte de sucção.",
+    "correctPosition": "Parede espessa, sem tensão e sem estrangulamento.",
+    "commonError": "Dobrar a mangueira ou confundir sua conexão com o respiro."
+  },
+  {
+    "id": "aspirator",
+    "name": "Aspirador de água",
+    "alternativeName": "Fonte de vácuo por efeito Venturi",
+    "function": "Produz pressão reduzida quando a água passa pelo estreitamento interno.",
+    "correctPosition": "Conectado após a armadilha, com água direcionada ao ralo.",
+    "commonError": "Desligar a água antes de abrir o sistema para a atmosfera."
+  },
+  {
+    "id": "adapter",
+    "name": "Adaptador de borracha",
+    "alternativeName": "Manga de filtração",
+    "function": "Veda a união entre o Büchner e o gargalo do kitassato.",
+    "correctPosition": "Centralizado no gargalo, sem dobras ou folgas.",
+    "commonError": "Omitir o adaptador ou usar tamanho incompatível."
+  },
+  {
+    "id": "buchner",
+    "name": "Funil de Büchner",
+    "alternativeName": "Funil de porcelana com placa perfurada",
+    "function": "Sustenta o papel e distribui a sucção pelos orifícios da placa.",
+    "correctPosition": "Vertical, apoiado no adaptador e com a placa nivelada.",
+    "commonError": "Inclinar o funil, trincar a porcelana ou bloquear a haste."
+  },
+  {
+    "id": "filter-paper",
+    "name": "Papel-filtro",
+    "alternativeName": "Disco filtrante",
+    "function": "Retém o sólido enquanto o líquido atravessa seus poros.",
+    "correctPosition": "Tamanho exato, concavidade para baixo e todos os orifícios cobertos.",
+    "commonError": "Usar papel pequeno, deixar borda levantada ou despejar antes de molhá-lo."
+  },
+  {
+    "id": "cold-solvent",
+    "name": "Solvente frio compatível",
+    "alternativeName": "Solvente de assentamento e lavagem",
+    "function": "Assenta o papel e remove líquido-mãe ou impurezas da torta.",
+    "correctPosition": "Usado em pequena quantidade e compatível com a mistura; em cristalização, normalmente o mesmo solvente frio.",
+    "commonError": "Usar água por padrão, solvente quente ou volume excessivo."
+  },
+  {
+    "id": "mixture-flask",
+    "name": "Frasco com a suspensão",
+    "alternativeName": "Mistura sólido–líquido",
+    "function": "Contém o material a ser transferido para o centro do papel.",
+    "correctPosition": "Exterior seco e conteúdo homogeneizado antes da transferência em porções.",
+    "commonError": "Despejar água do banho de gelo ou direcionar sólido para a borda do papel."
+  },
+  {
+    "id": "glass-rod",
+    "name": "Bastão de vidro",
+    "alternativeName": "Bastão de agitação",
+    "function": "Ajuda a desprender e distribuir suavemente o sólido durante a lavagem.",
+    "correctPosition": "Contato leve, sem rasgar ou deslocar o papel.",
+    "commonError": "Pressionar o papel ou triturar vigorosamente a torta."
+  },
+  {
+    "id": "watch-glass",
+    "name": "Vidro de relógio",
+    "alternativeName": "Suporte previamente pesado",
+    "function": "Recebe papel e sólido para a secagem final.",
+    "correctPosition": "Limpo, seco e previamente pesado.",
+    "commonError": "Registrar massa antes da secagem completa do sólido."
+  }
+]
+

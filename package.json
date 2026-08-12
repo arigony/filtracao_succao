@@ -1,0 +1,14 @@
+{
+  "name": "laboratorio-filtracao-succao",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "node tests/server.mjs",
+    "test": "node --test tests/apparatus.test.mjs tests/data.test.mjs tests/procedure.test.mjs tests/quicklook.test.mjs tests/ui.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

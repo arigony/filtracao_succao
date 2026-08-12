@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eff6f3">
+  <meta name="description" content="Laboratório 3D interativo para aprender a montagem e a operação segura da filtração por sucção.">
+  <title>Laboratório Orgânico — Filtração por sucção</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#experience">Ir para a experiência</a>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="Laboratório Orgânico — início">
+      <span class="brand-mark" aria-hidden="true">Q</span>
+      <span><strong>Laboratório Orgânico</strong><small>Filtração por sucção segura</small></span>
+    </a>
+    <div class="header-actions">
+      <a class="reference-link" href="./referencia/filtracao-succao.html">Guia científico</a>
+      <button id="motion-toggle" class="quiet-button" type="button" aria-pressed="false"><span aria-hidden="true">◫</span> Reduzir animações</button>
+    </div>
+  </header>
+
+  <main id="experience" class="experience-shell">
+    <nav class="mode-nav" aria-label="Modos da experiência">
+      <button class="mode-button is-active" type="button" data-mode="explore" aria-pressed="true"><span>01</span> Explorar</button>
+      <button class="mode-button" type="button" data-mode="guided" aria-pressed="false"><span>02</span> Montar</button>
+      <button class="mode-button" type="button" data-mode="procedure" aria-pressed="false"><span>03</span> Operar</button>
+      <button class="mode-button" type="button" data-mode="diagnostic" aria-pressed="false"><span>04</span> Diagnosticar</button>
+      <button class="mode-button" type="button" data-mode="ar" aria-pressed="false"><span>05</span> Ver em RA</button>
+    </nav>
+
+    <div class="workspace">
+      <section class="stage-column" aria-labelledby="stage-title">
+        <div class="stage-heading">
+          <div><p class="eyebrow" id="mode-kicker">Explorar</p><h1 id="stage-title">Montagem completa</h1></div>
+          <div class="state-chip" id="safety-state"><span aria-hidden="true">●</span> Sistema ventilado</div>
+        </div>
+
+        <div id="explore-toolbar" class="view-tabs" aria-label="Vistas do modo explorar">
+          <button type="button" data-view="complete" aria-pressed="true">Montagem completa</button>
+          <button type="button" data-view="apparatus" aria-pressed="false">Circuito de vácuo</button>
+          <button type="button" data-view="supplies" aria-pressed="false">Materiais auxiliares</button>
+        </div>
+
+        <div class="scene-wrap" id="scene-wrap">
+          <canvas id="scene-canvas" aria-label="Modelo tridimensional interativo de uma montagem de filtração por sucção"></canvas>
+          <div id="scene-labels" class="scene-labels" hidden aria-hidden="true"></div>
+          <aside id="file-protocol-help" class="file-protocol-help" hidden role="status">
+            <p class="eyebrow">Abertura local</p>
+            <h2>O laboratório 3D precisa de um servidor local</h2>
+            <p>O endereço iniciado por <code>file://</code> não permite carregar os módulos e dados da experiência. Na pasta do projeto, dê dois cliques em <code>abrir-laboratorio.cmd</code> ou use <code>npm run serve</code>.</p>
+            <p class="file-protocol-note">A página publicada no GitHub Pages funciona normalmente.</p>
+          </aside>
+          <p class="scene-status" id="scene-status" role="status">Preparando a bancada virtual…</p>
+          <p class="gesture-hint">Arraste para girar · use dois dedos ou a roda para aproximar</p>
+          <p class="select-hint"><span aria-hidden="true">◎</span> Toque numa peça para conhecê-la</p>
+          <div class="scene-actions">
+            <button id="labels-toggle" type="button" aria-pressed="false">Mostrar rótulos</button>
+            <button id="reset-view" type="button">Reenquadrar</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="info-column">
+        <section id="explore-panel" class="panel">
+          <p class="eyebrow">Componente em foco</p>
+          <h2 id="piece-name">Kitassato de parede espessa</h2>
+          <p id="piece-alternative" class="muted">Frasco de filtração com braço lateral</p>
+          <p id="piece-function">Recebe o filtrado e suporta a diferença de pressão durante a sucção.</p>
+          <dl class="fact-list">
+            <div><dt>Posição correta</dt><dd id="piece-position"></dd></div>
+            <div><dt>Atenção</dt><dd id="piece-error"></dd></div>
+          </dl>
+          <div class="piece-shortcuts" aria-label="Peças principais">
+            <button type="button" data-piece="filter-flask">Kitassato</button>
+            <button type="button" data-piece="buchner">Büchner</button>
+            <button type="button" data-piece="vacuum-trap">Armadilha</button>
+            <button type="button" data-piece="filter-paper">Papel</button>
+          </div>
+          <button class="primary-action" id="vacuum-demo" type="button">Mostrar o caminho do vácuo</button>
+          <div class="sequence-note"><span aria-hidden="true">→</span><p><strong>Circuito essencial</strong>kitassato → armadilha com respiro → aspirador</p></div>
+        </section>
+
+        <section id="guided-panel" class="panel" hidden>
+          <div class="progress-head"><p id="step-counter">Etapa 1 de 8</p><div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div></div>
+          <p class="eyebrow">Montagem guiada</p>
+          <h2 id="step-title"></h2>
+          <p id="step-instruction" class="instruction"></p>
+          <div class="principle-card"><strong>Por quê?</strong><p id="step-principle"></p></div>
+          <div id="guided-checks" class="checklist" hidden><h3>Verificação crítica</h3><ul id="guided-check-list"></ul></div>
+          <div class="panel-navigation">
+            <button id="previous-step" type="button">Anterior</button>
+            <button id="next-step" class="primary-action" type="button">Próxima etapa</button>
+          </div>
+        </section>
+
+        <section id="procedure-panel" class="panel" hidden>
+          <div class="progress-head"><p id="procedure-counter">Fase 1 de 6</p><div class="progress-track"><span id="procedure-progress"></span></div></div>
+          <p class="eyebrow">Procedimento seguro</p>
+          <h2 id="procedure-title"></h2>
+          <p id="procedure-instruction" class="instruction"></p>
+          <div class="principle-card"><strong>Princípio</strong><p id="procedure-principle"></p></div>
+          <div class="warning-card"><strong>Atenção</strong><p id="procedure-safety"></p></div>
+          <div id="procedure-gate" class="gate-card">
+            <p><strong>Liberação da mistura</strong> Confirme as três condições antes de transferir.</p>
+            <label><input type="checkbox" id="check-trap"> Armadilha instalada</label>
+            <label><input type="checkbox" id="check-paper"> Papel cobre os orifícios</label>
+            <button type="button" id="wet-paper" class="primary-action">Aplicar sucção e molhar o papel</button>
+          </div>
+          <div class="vacuum-controls" aria-label="Estado do circuito">
+            <button id="vent-control" type="button" aria-pressed="true">Respiro aberto</button>
+            <button id="vacuum-control" type="button" aria-pressed="false">Sucção desligada</button>
+          </div>
+          <p id="procedure-feedback" class="feedback" role="status"></p>
+          <div class="panel-navigation">
+            <button id="procedure-previous" type="button">Anterior</button>
+            <button id="procedure-next" class="primary-action" type="button">Avançar com segurança</button>
+          </div>
+        </section>
+
+        <section id="diagnostic-panel" class="panel" hidden>
+          <div class="progress-head"><p id="diagnostic-counter">Erro 1 de 5</p><div class="progress-track"><span id="diagnostic-progress"></span></div></div>
+          <p class="eyebrow">Diagnóstico</p>
+          <h2 id="diagnostic-title"></h2>
+          <p id="diagnostic-observation" class="instruction"></p>
+          <fieldset id="diagnostic-choices"><legend>Qual é a correção apropriada?</legend></fieldset>
+          <div id="diagnostic-explanation" class="diagnostic-explanation" hidden>
+            <p><strong>Risco</strong><span id="diagnostic-risk"></span></p>
+            <p><strong>Princípio</strong><span id="diagnostic-principle"></span></p>
+            <p><strong>Correção</strong><span id="diagnostic-correction"></span></p>
+          </div>
+          <p id="diagnostic-feedback" class="feedback" role="status"></p>
+          <button id="diagnostic-next" class="primary-action" type="button" disabled>Próximo erro</button>
+        </section>
+
+        <section id="ar-panel" class="panel" hidden>
+          <p class="eyebrow">Realidade aumentada</p>
+          <h2>Leve a montagem à bancada</h2>
+          <p>Em dispositivos compatíveis, posicione a montagem completa ou reveja as oito etapas na sua superfície real.</p>
+          <div id="webxr-options" class="ar-options">
+            <button class="primary-action" type="button" data-start-ar="complete">Abrir montagem completa</button>
+            <button type="button" data-start-ar="guided">Abrir passo a passo</button>
+          </div>
+          <p id="ar-support-message" class="fallback-note">Verificando compatibilidade com RA…</p>
+          <div id="quicklook-area" hidden>
+            <h3>iPhone e iPad</h3>
+            <p>Abra uma etapa diretamente no Visualizador de RA.</p>
+            <div id="quicklook-step-grid" class="quicklook-grid"></div>
+          </div>
+          <div class="reference-card"><strong>Sem RA?</strong><p>A experiência 3D completa continua disponível. Use também o <a href="./referencia/filtracao-succao.html">guia visual científico</a>.</p></div>
+        </section>
+      </aside>
+    </div>
+
+    <section class="science-section" aria-labelledby="science-title">
+      <p class="eyebrow">Fundamento experimental</p>
+      <h2 id="science-title">Por que molhar o papel antes da mistura?</h2>
+      <p class="science-lead">A pequena porção de solvente frio compatível atravessa o papel sob sucção e o mantém aderido à placa perfurada. Essa vedação reduz caminhos pelas bordas, onde cristais poderiam passar diretamente ao filtrado.</p>
+      <div class="science-grid">
+        <article><span>01</span><h3>Reter o sólido</h3><p>A sucção acelera a separação quando o objetivo é recuperar a fase sólida, especialmente após cristalização.</p></article>
+        <article><span>02</span><h3>Usar solvente compatível</h3><p>Em cristalização, utiliza-se normalmente pequena quantidade do mesmo solvente frio. Água não é uma escolha universal.</p></article>
+        <article><span>03</span><h3>Evitar retroaspiração</h3><p>A armadilha protege o circuito, e o respiro deve ser aberto antes de desligar o aspirador.</p></article>
+      </div>
+      <div class="source-strip">
+        <p><strong>Referência científica principal:</strong> Lisa Nichols, <em>Suction Filtration</em>, Chemistry LibreTexts.</p>
+        <a href="https://chem.libretexts.org/Bookshelves/Organic_Chemistry/Organic_Chemistry_Lab_Techniques_(Nichols)/01%3A_General_Techniques/1.05%3A_Filtering_Methods/1.5D%3A_Suction_Filtration" target="_blank" rel="noopener noreferrer">Consultar fonte original ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="ar-overlay" class="ar-overlay" hidden data-ar-interface>
+    <p id="ar-instruction">Mova o dispositivo para encontrar uma superfície.</p>
+    <div class="ar-toolbar" data-ar-interface>
+      <button type="button" data-ar-action="previous">Anterior</button>
+      <span id="ar-step-count">Visão geral</span>
+      <button type="button" data-ar-action="next">Próxima</button>
+      <button type="button" data-ar-action="guided">Passo a passo</button>
+      <button type="button" data-ar-action="complete" hidden>Completa</button>
+      <button type="button" data-ar-action="restore">Restaurar</button>
+      <button type="button" data-ar-action="reposition">Reposicionar</button>
+      <button type="button" data-ar-action="exit">Sair</button>
+    </div>
+    <div class="ar-step-card" data-ar-interface><strong id="ar-step-title">Montagem completa</strong><span id="ar-step-description">Circuito completo de filtração por sucção.</span></div>
+  </div>
+
+  <footer class="site-footer"><p>Laboratório Orgânico — material didático interativo sobre filtração por sucção.</p></footer>
+  <script>
+    (() => {
+      if (location.protocol === "file:") {
+        document.querySelector("#file-protocol-help").hidden = false;
+        document.querySelector("#scene-status").hidden = true;
+        document.querySelector("#scene-canvas").hidden = true;
+        document.querySelectorAll(".gesture-hint, .select-hint, .scene-actions").forEach((element) => { element.hidden = true; });
+        return;
+      }
+      const application = document.createElement("script");
+      application.type = "module";
+      application.src = "./js/app.js";
+      document.body.append(application);
+    })();
+  </script>
+</body>
+</html>

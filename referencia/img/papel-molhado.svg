@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1080" role="img" aria-labelledby="title desc">
+  <title id="title">2. Molhar e assentar o papel</title>
+  <desc id="desc">Close-up vetorial do papel cobrindo os orifícios e sendo molhado com solvente frio sob sucção.</desc>
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".92"/>
+      <stop offset=".45" stop-color="#dff4fb" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#a8dce9" stop-opacity=".42"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5d6867"/><stop offset=".3" stop-color="#e8eeee"/><stop offset=".55" stop-color="#7c8987"/><stop offset="1" stop-color="#d9e1df"/>
+    </linearGradient>
+    <linearGradient id="porcelain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9efec"/>
+    </linearGradient>
+    <linearGradient id="amberLiquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd65a"/><stop offset="1" stop-color="#e99713"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#18352f" flood-opacity=".13"/></filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#176fc2"/></marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#249447"/></marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ef8a00"/></marker>
+    <style><![CDATA[
+      text{font-family:Arial,"Segoe UI",sans-serif;fill:#142b27}
+      .heading{font-size:48px;font-weight:800;fill:#fff;letter-spacing:-1px}
+      .subheading{font-size:23px;font-weight:700;fill:#d8e8f5}
+      .label{font-size:26px;font-weight:800;fill:#101817}
+      .body{font-size:30px;font-weight:650}
+      .cardText{font-weight:700;fill:#142b27}
+      .number{font-size:35px;font-weight:900;fill:#fff}
+      .small{font-size:23px;font-weight:700;fill:#526861}
+      .tiny{font-size:19px;font-weight:750;fill:#526861}
+      .glass{fill:url(#glass);stroke:#2774b8;stroke-width:4;stroke-linejoin:round}
+      .glassThin{fill:none;stroke:#5aa6d3;stroke-width:4;stroke-linecap:round}
+      .porcelain{fill:url(#porcelain);stroke:#617b78;stroke-width:4}
+      .hose{fill:none;stroke:#26312f;stroke-width:24;stroke-linecap:round;stroke-linejoin:round}
+      .leader{fill:none;stroke:#101817;stroke-width:3}
+    ]]></style>
+  </defs>
+  <rect width="1440" height="1080" fill="#fbfdfc"/>
+  <rect x="22" y="20" width="930" height="112" rx="18" fill="#071f3a" filter="url(#shadow)"/>
+  <text x="54" y="91" class="heading">2. Molhar e assentar o papel</text>
+  <text x="985" y="58" class="subheading" fill="#071f3a">FILTRAÇÃO</text>
+  <text x="985" y="88" class="subheading" fill="#071f3a">POR SUCÇÃO</text>
+  <g filter="url(#shadow)">
+    <rect x="35" y="190" width="485" height="170" rx="18" fill="#edf6ff" stroke="#176fc2" stroke-width="3"/>
+    <circle cx="87" cy="243" r="32" fill="#176fc2"/>
+    <circle cx="87" cy="243" r="27" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <text x="87" y="254" class="number" text-anchor="middle">1</text>
+    <text x="139" y="239" class="cardText" font-size="28" text-anchor="start"><tspan x="139" dy="0">Papel do tamanho exato:</tspan><tspan x="139" dy="37">cobre todos os orifícios.</tspan></text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="35" y="390" width="485" height="170" rx="18" fill="#eef9f0" stroke="#249447" stroke-width="3"/>
+    <circle cx="87" cy="443" r="32" fill="#249447"/>
+    <circle cx="87" cy="443" r="27" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <text x="87" y="454" class="number" text-anchor="middle">2</text>
+    <text x="139" y="439" class="cardText" font-size="28" text-anchor="start"><tspan x="139" dy="0">Ligue a sucção antes</tspan><tspan x="139" dy="37">de adicionar solvente.</tspan></text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="35" y="590" width="485" height="190" rx="18" fill="#fff7e8" stroke="#ef8a00" stroke-width="3"/>
+    <circle cx="87" cy="643" r="32" fill="#ef8a00"/>
+    <circle cx="87" cy="643" r="27" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <text x="87" y="654" class="number" text-anchor="middle">3</text>
+    <text x="139" y="639" class="cardText" font-size="28" text-anchor="start"><tspan x="139" dy="0">Molhe com pequena porção</tspan><tspan x="139" dy="37">de solvente frio</tspan><tspan x="139" dy="37">compatível.</tspan></text>
+  </g>
+  <g>
+    <ellipse cx="920" cy="968" rx="330" ry="30" fill="#193e35" opacity=".08"/>
+    <g>
+      <path d="M650 510 Q650 475 690 475 H1050 Q1090 475 1090 510 V745 Q1090 785 1050 785 H690 Q650 785 650 745 Z" class="porcelain"/>
+      <ellipse cx="870" cy="510" rx="220" ry="54" fill="#fff" stroke="#617b78" stroke-width="5"/>
+      <ellipse cx="870" cy="635" rx="185" ry="42" fill="#e8f4f8" stroke="#176fc2" stroke-width="4"/>
+      <circle cx="760" cy="625" r="8" fill="#344a46" opacity=".75"/><circle cx="815" cy="615" r="8" fill="#344a46" opacity=".75"/><circle cx="870" cy="610" r="8" fill="#344a46" opacity=".75"/><circle cx="925" cy="615" r="8" fill="#344a46" opacity=".75"/><circle cx="980" cy="625" r="8" fill="#344a46" opacity=".75"/><circle cx="790" cy="650" r="8" fill="#344a46" opacity=".75"/><circle cx="845" cy="645" r="8" fill="#344a46" opacity=".75"/><circle cx="900" cy="645" r="8" fill="#344a46" opacity=".75"/><circle cx="955" cy="650" r="8" fill="#344a46" opacity=".75"/>
+      <ellipse cx="870" cy="627" rx="174" ry="34" fill="#fdfcf4" stroke="#778c87" stroke-width="3"/>
+
+      <path d="M810 785 H930 L950 900 H790 Z" class="porcelain"/>
+      <path d="M790 900 L950 900 L980 960 H760 Z" class="glass"/>
+    </g>
+    <g transform="rotate(-18 940 290)">
+      <path d="M960 170 H1050 V360 H960 Z" class="glass"/>
+      <path d="M978 235 H1033 V344 H978 Z" fill="#77cbe8" opacity=".6"/>
+      <path d="M1005 360 V445" stroke="#77cbe8" stroke-width="18" stroke-linecap="round"/>
+    </g>
+    <circle cx="980" cy="453" r="12" fill="#59b9df"/><circle cx="958" cy="494" r="10" fill="#59b9df"/><circle cx="940" cy="531" r="9" fill="#59b9df"/>
+    <path d="M972 460 C960 505 930 560 895 598" fill="none" stroke="#176fc2" stroke-width="7" marker-end="url(#arrowBlue)"/>
+    <path d="M870 675 V830" fill="none" stroke="#176fc2" stroke-width="8" stroke-dasharray="14 10" marker-end="url(#arrowBlue)"/>
+    <g transform="translate(1125 535)">
+      <circle cx="0" cy="0" r="72" fill="#fff" stroke="#176fc2" stroke-width="4" filter="url(#shadow)"/>
+      <circle cx="0" cy="0" r="52" fill="#fdfcf4" stroke="#778c87" stroke-width="3"/>
+      <path d="M-38 13 Q0 42 38 13" fill="none" stroke="#7c8f8a" stroke-width="5"/>
+      <text x="0" y="104" class="tiny" text-anchor="middle">concavidade para baixo</text>
+    </g>
+  </g>
+  <rect x="62" y="850" width="1280" height="154" rx="22" fill="#fff5db" stroke="#d69a20" stroke-width="4" filter="url(#shadow)"/>
+  <circle cx="135" cy="927" r="46" fill="#d69a20"/><path d="M135 895 V935" stroke="#fff" stroke-width="10" stroke-linecap="round"/><circle cx="135" cy="958" r="7" fill="#fff"/>
+  <text x="205" y="905" class="body" text-anchor="start"><tspan x="205" dy="0">ETAPA OBRIGATÓRIA: só derrame a mistura depois que o solvente escoar</tspan><tspan x="205" dy="42">e o papel permanecer aderido à placa perfurada.</tspan></text>
+  </svg>

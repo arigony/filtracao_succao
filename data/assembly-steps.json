@@ -1,0 +1,67 @@
+[
+  {
+    "id": 0,
+    "title": "Preparar o suporte",
+    "instruction": "Posicione o suporte universal sobre a bancada, afastado da borda e com a haste vertical.",
+    "principle": "Uma base estável evita que a tração da mangueira mova toda a montagem.",
+    "pieceIds": ["stand"]
+  },
+  {
+    "id": 1,
+    "title": "Estabilizar o kitassato",
+    "instruction": "Prenda suavemente o gargalo do kitassato de parede espessa com a garra.",
+    "principle": "O frasco deve resistir à movimentação da mangueira sem ser comprimido pela garra.",
+    "pieceIds": ["filter-flask", "clamp"]
+  },
+  {
+    "id": 2,
+    "title": "Inserir a armadilha",
+    "instruction": "Conecte o braço lateral do kitassato à entrada da armadilha com mangueira de parede espessa.",
+    "principle": "A armadilha impede comunicação líquida direta entre o filtrado e a linha de água.",
+    "pieceIds": ["vacuum-hose-in", "vacuum-trap", "vent-clamp"]
+  },
+  {
+    "id": 3,
+    "title": "Conectar o aspirador",
+    "instruction": "Ligue a saída da armadilha ao aspirador de água, mantendo a mangueira sem dobras.",
+    "principle": "Dobras, folgas e tensão reduzem a sucção e podem desestabilizar o conjunto.",
+    "pieceIds": ["vacuum-hose-out", "aspirator"]
+  },
+  {
+    "id": 4,
+    "title": "Colocar o adaptador",
+    "instruction": "Centralize o adaptador de borracha no gargalo do kitassato.",
+    "principle": "A manga flexível cria vedação sem forçar o vidro ou a porcelana.",
+    "pieceIds": ["adapter"]
+  },
+  {
+    "id": 5,
+    "title": "Encaixar o Büchner",
+    "instruction": "Apoie verticalmente o funil de Büchner no adaptador e confira a estabilidade.",
+    "principle": "A placa perfurada nivelada distribui a sucção e sustenta o papel uniformemente.",
+    "pieceIds": ["buchner"]
+  },
+  {
+    "id": 6,
+    "title": "Posicionar o papel",
+    "instruction": "Escolha papel do tamanho exato, coloque a concavidade para baixo e cubra todos os orifícios.",
+    "principle": "Bordas levantadas permitem que sólido contorne o papel e alcance o filtrado.",
+    "pieceIds": ["filter-paper"]
+  },
+  {
+    "id": 7,
+    "title": "Aplicar sucção e molhar",
+    "instruction": "Ligue o aspirador e molhe o papel com pequena quantidade de solvente frio compatível até ele assentar.",
+    "principle": "O papel úmido aderido à placa forma a vedação necessária antes da transferência da mistura.",
+    "pieceIds": ["cold-solvent"],
+    "checks": [
+      "Kitassato de parede espessa estabilizado",
+      "Armadilha instalada entre frasco e aspirador",
+      "Mangueiras espessas, firmes e sem dobras",
+      "Adaptador e Büchner centralizados",
+      "Papel cobre todos os orifícios com concavidade para baixo",
+      "Papel molhado com solvente frio compatível e assentado sob sucção"
+    ]
+  }
+]
+

@@ -1,0 +1,51 @@
+[
+  {
+    "id": 0,
+    "title": "Confirmar vedação",
+    "instruction": "Observe se o solvente atravessa o papel e se ele permanece aderido à placa.",
+    "principle": "Sucção efetiva e papel assentado são pré-condições para reter o sólido.",
+    "safety": "Não derrame a mistura enquanto houver fuga, borda levantada ou papel seco.",
+    "state": "sealed"
+  },
+  {
+    "id": 1,
+    "title": "Transferir a suspensão",
+    "instruction": "Homogeneíze a mistura e derrame em porções, direcionando o sólido ao centro do papel.",
+    "principle": "A sucção acelera a passagem do líquido, enquanto o centro oferece maior margem contra perdas laterais.",
+    "safety": "Se o frasco veio de banho de gelo, seque a parte externa antes de transferir.",
+    "state": "transfer"
+  },
+  {
+    "id": 2,
+    "title": "Recuperar o sólido residual",
+    "instruction": "Use pequena quantidade de solvente frio para levar ao funil o sólido que ficou no frasco.",
+    "principle": "Uma transferência quantitativa reduz perdas, mas excesso de solvente pode dissolver o produto.",
+    "safety": "Use apenas o volume necessário e um solvente compatível.",
+    "state": "vessel-rinse"
+  },
+  {
+    "id": 3,
+    "title": "Lavar a torta sem sucção",
+    "instruction": "Abra o respiro, interrompa a sucção e distribua pequena porção de solvente frio pela torta.",
+    "principle": "Sem sucção, o solvente permanece tempo suficiente para deslocar o líquido-mãe e solubilizar impurezas.",
+    "safety": "Movimente suavemente com o bastão para não rasgar nem deslocar o papel.",
+    "state": "cake-rinse"
+  },
+  {
+    "id": 4,
+    "title": "Reaplicar sucção e secar",
+    "instruction": "Feche o respiro, reaplique a sucção e deixe o ar atravessar a torta por alguns minutos.",
+    "principle": "O fluxo de ar remove parte do solvente residual e deixa a torta firme, não pastosa.",
+    "safety": "Se o líquido não escoar, verifique vedação, mangueiras e aspirador.",
+    "state": "suction-dry"
+  },
+  {
+    "id": 5,
+    "title": "Encerrar e transferir",
+    "instruction": "Abra o sistema para a atmosfera, desligue o aspirador e transfira papel e sólido ao vidro de relógio.",
+    "principle": "Ventilar antes de desligar previne retroaspiração; a secagem completa é necessária antes da massa final.",
+    "safety": "Sólido molhado com solvente orgânico nunca deve ser colocado diretamente em estufa quente.",
+    "state": "complete"
+  }
+]
+

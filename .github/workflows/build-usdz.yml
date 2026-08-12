@@ -1,0 +1,49 @@
+name: Build iPhone Quick Look models
+
+on:
+  push:
+    paths:
+      - "scripts/generate-ios-usdz.mjs"
+      - "js/apparatus.js"
+      - "vendor/addons/exporters/USDZExporter.js"
+      - "vendor/addons/libs/fflate.module.js"
+      - "vendor/addons/utils/TextureUtils.js"
+      - ".github/workflows/build-usdz.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-usdz:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Export USDZ
+        run: node scripts/generate-ios-usdz.mjs
+
+      - name: Verify USDZ
+        run: |
+          for step in {1..8}; do
+            test -s "assets/models/filtracao-step-${step}.usdz"
+          done
+          ls -lh assets/models/filtracao-step-*.usdz
+
+      - name: Commit generated models
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/models/filtracao-step-*.usdz
+          if git diff --cached --quiet; then
+            echo "USDZ already up to date."
+            exit 0
+          fi
+          git commit -m "Build iPhone Quick Look models"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

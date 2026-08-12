@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1080" role="img" aria-labelledby="title desc">
+  <title id="title">1. Montagem do circuito</title>
+  <desc id="desc">Infográfico da montagem completa com kitassato, Büchner, armadilha, respiro e aspirador.</desc>
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".92"/>
+      <stop offset=".45" stop-color="#dff4fb" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#a8dce9" stop-opacity=".42"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5d6867"/><stop offset=".3" stop-color="#e8eeee"/><stop offset=".55" stop-color="#7c8987"/><stop offset="1" stop-color="#d9e1df"/>
+    </linearGradient>
+    <linearGradient id="porcelain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9efec"/>
+    </linearGradient>
+    <linearGradient id="amberLiquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd65a"/><stop offset="1" stop-color="#e99713"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#18352f" flood-opacity=".13"/></filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#176fc2"/></marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#249447"/></marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ef8a00"/></marker>
+    <style><![CDATA[
+      text{font-family:Arial,"Segoe UI",sans-serif;fill:#142b27}
+      .heading{font-size:48px;font-weight:800;fill:#fff;letter-spacing:-1px}
+      .subheading{font-size:23px;font-weight:700;fill:#d8e8f5}
+      .label{font-size:26px;font-weight:800;fill:#101817}
+      .body{font-size:30px;font-weight:650}
+      .cardText{font-weight:700;fill:#142b27}
+      .number{font-size:35px;font-weight:900;fill:#fff}
+      .small{font-size:23px;font-weight:700;fill:#526861}
+      .tiny{font-size:19px;font-weight:750;fill:#526861}
+      .glass{fill:url(#glass);stroke:#2774b8;stroke-width:4;stroke-linejoin:round}
+      .glassThin{fill:none;stroke:#5aa6d3;stroke-width:4;stroke-linecap:round}
+      .porcelain{fill:url(#porcelain);stroke:#617b78;stroke-width:4}
+      .hose{fill:none;stroke:#26312f;stroke-width:24;stroke-linecap:round;stroke-linejoin:round}
+      .leader{fill:none;stroke:#101817;stroke-width:3}
+    ]]></style>
+  </defs>
+  <rect width="1440" height="1080" fill="#fbfdfc"/>
+  <rect x="22" y="20" width="930" height="112" rx="18" fill="#071f3a" filter="url(#shadow)"/>
+  <text x="54" y="91" class="heading">1. Montagem do circuito</text>
+  <text x="985" y="58" class="subheading" fill="#071f3a">FILTRAÇÃO</text>
+  <text x="985" y="88" class="subheading" fill="#071f3a">POR SUCÇÃO</text>
+  <g filter="url(#shadow)">
+    <rect x="35" y="190" width="405" height="190" rx="18" fill="#fff7e8" stroke="#ef8a00" stroke-width="3"/>
+    <circle cx="87" cy="243" r="32" fill="#ef8a00"/>
+    <circle cx="87" cy="243" r="27" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <text x="87" y="254" class="number" text-anchor="middle">1</text>
+    <text x="139" y="239" class="cardText" font-size="29" text-anchor="start"><tspan x="139" dy="0">Prenda o kitassato</tspan><tspan x="139" dy="38">de parede espessa</tspan><tspan x="139" dy="38">sem forçar o vidro.</tspan></text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="35" y="410" width="405" height="190" rx="18" fill="#edf6ff" stroke="#176fc2" stroke-width="3"/>
+    <circle cx="87" cy="463" r="32" fill="#176fc2"/>
+    <circle cx="87" cy="463" r="27" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <text x="87" y="474" class="number" text-anchor="middle">2</text>
+    <text x="139" y="459" class="cardText" font-size="29" text-anchor="start"><tspan x="139" dy="0">Instale a armadilha</tspan><tspan x="139" dy="38">entre o kitassato</tspan><tspan x="139" dy="38">e o aspirador.</tspan></text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="35" y="630" width="405" height="190" rx="18" fill="#eef9f0" stroke="#249447" stroke-width="3"/>
+    <circle cx="87" cy="683" r="32" fill="#249447"/>
+    <circle cx="87" cy="683" r="27" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
+    <text x="87" y="694" class="number" text-anchor="middle">3</text>
+    <text x="139" y="679" class="cardText" font-size="29" text-anchor="start"><tspan x="139" dy="0">Use mangueiras</tspan><tspan x="139" dy="38">espessas, firmes</tspan><tspan x="139" dy="38">e sem dobras.</tspan></text>
+  </g>
+  <g id="montagem">
+    <ellipse cx="930" cy="1008" rx="430" ry="35" fill="#193e35" opacity=".08"/>
+    <g id="suporte">
+      <rect x="500" y="955" width="250" height="48" rx="8" fill="#3f4a49" stroke="#17201f" stroke-width="4"/>
+      <rect x="610" y="205" width="24" height="765" rx="10" fill="url(#steel)" stroke="#2e3937" stroke-width="3"/>
+      <rect x="575" y="560" width="95" height="54" rx="10" fill="#3d4846" stroke="#18211f" stroke-width="4"/>
+      <path d="M665 588 H805" stroke="url(#steel)" stroke-width="20" stroke-linecap="round"/>
+      <path d="M795 570 l55 18 -55 18" fill="none" stroke="#37413f" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="572" cy="587" r="18" fill="#1f2927"/>
+    </g>
+    <g id="kitassato">
+      <path d="M790 585 L900 585 L930 676 L984 850 Q990 900 930 920 H760 Q700 900 708 850 L760 676 Z" class="glass"/>
+      <path d="M774 585 V525 H916 V585" class="glass"/>
+      <ellipse cx="845" cy="875" rx="95" ry="24" fill="#e8b24a" opacity=".48"/>
+      <path d="M930 677 C980 670 1008 658 1037 637" class="glassThin" stroke-width="26"/>
+      <path d="M1030 638 C1060 622 1074 610 1092 604" class="hose"/>
+    </g>
+    <g id="adaptador">
+      <path d="M788 543 L902 543 L888 484 H802 Z" fill="#202a28" stroke="#111817" stroke-width="4"/>
+      <ellipse cx="845" cy="484" rx="43" ry="13" fill="#111817"/>
+    </g>
+    <g id="buchner">
+      <path d="M720 280 Q720 255 750 255 H940 Q970 255 970 280 V455 Q970 485 940 485 H750 Q720 485 720 455 Z" class="porcelain"/>
+      <ellipse cx="845" cy="280" rx="125" ry="29" fill="#fff" stroke="#617b78" stroke-width="4"/>
+      <ellipse cx="845" cy="410" rx="105" ry="22" fill="#f5f6ef" stroke="#97aaa6" stroke-width="3"/>
+      <path d="M815 480 H875 L887 540 H803 Z" class="porcelain"/>
+      <ellipse cx="845" cy="407" rx="97" ry="17" fill="#fffdf4" stroke="#b7c3bd" stroke-width="2"/>
+    </g>
+    <g id="armadilha">
+      <path d="M1094 690 H1180 L1200 758 L1240 900 Q1244 937 1204 952 H1070 Q1030 937 1035 900 L1075 758 Z" class="glass"/>
+      <path d="M1100 690 V632 H1175 V690" class="glass"/>
+      <path d="M1122 632 V535 H1153 V632" class="glass"/>
+      <path d="M1078 756 C1048 748 1025 733 1008 713" class="glassThin" stroke-width="24"/>
+      <rect x="1102" y="625" width="71" height="27" rx="8" fill="#23302d"/>
+      <path d="M1138 535 C1138 492 1165 475 1192 458 C1218 442 1228 420 1228 393" class="hose"/>
+      <circle cx="1192" cy="458" r="13" fill="#26312f"/>
+      <path d="M1192 458 V343" stroke="#26312f" stroke-width="18" stroke-linecap="round"/>
+      <rect x="1164" y="376" width="70" height="25" rx="7" fill="#249447" transform="rotate(-10 1199 388)"/>
+      <path d="M1192 330 V286" stroke="#249447" stroke-width="8" marker-end="url(#arrowGreen)"/>
+    </g>
+    <path d="M1228 393 C1265 380 1288 409 1280 455 C1270 520 1262 593 1270 660" class="hose"/>
+    <g id="aspirador">
+      <path d="M1350 855 V315 Q1350 245 1295 245 H1260" fill="none" stroke="url(#steel)" stroke-width="36" stroke-linecap="round"/>
+      <path d="M1270 660 H1322" stroke="#176fc2" stroke-width="28" stroke-linecap="round"/>
+      <path d="M1324 610 V760" stroke="#176fc2" stroke-width="42" stroke-linecap="round"/>
+      <path d="M1324 765 V910" stroke="#42aee5" stroke-width="14" stroke-linecap="round" opacity=".75"/>
+    </g>
+    <path d="M975 670 C1030 660 1040 735 1090 744 C1135 750 1138 660 1138 545 C1138 500 1180 480 1200 455 C1240 410 1260 470 1270 620" fill="none" stroke="#176fc2" stroke-width="7" stroke-dasharray="15 11" marker-end="url(#arrowBlue)"/>
+  </g>
+  <g>
+    <circle cx="938" cy="310" r="6" fill="#101817"/>
+    <path d="M 938 310 L 987 236" fill="none" stroke="#101817" stroke-width="3"/>
+    <text x="1005" y="245" class="label" text-anchor="start"><tspan x="1005" dy="0">Funil de</tspan><tspan x="1005" dy="31">Büchner</tspan></text>
+  </g>
+  <g>
+    <circle cx="752" cy="850" r="6" fill="#101817"/>
+    <path d="M 752 850 L 698 939" fill="none" stroke="#101817" stroke-width="3"/>
+    <text x="680" y="948" class="label" text-anchor="end"><tspan x="680" dy="0">Kitassato</tspan></text>
+  </g>
+  <g>
+    <circle cx="1203" cy="840" r="6" fill="#101817"/>
+    <path d="M 1203 840 L 1242 911" fill="none" stroke="#101817" stroke-width="3"/>
+    <text x="1260" y="920" class="label" text-anchor="start"><tspan x="1260" dy="0">Armadilha</tspan><tspan x="1260" dy="31">de vácuo</tspan></text>
+  </g>
+  <g>
+    <circle cx="1202" cy="388" r="6" fill="#101817"/>
+    <path d="M 1202 388 L 1252 261" fill="none" stroke="#101817" stroke-width="3"/>
+    <text x="1270" y="270" class="label" text-anchor="start"><tspan x="1270" dy="0">Respiro</tspan><tspan x="1270" dy="31">com pinça</tspan></text>
+  </g>
+  <rect x="502" y="1017" width="818" height="46" rx="18" fill="#eaf6fb" stroke="#a8d5e8" stroke-width="2"/>
+  <text x="911" y="1048" class="small" text-anchor="middle">Caminho do vácuo: kitassato → armadilha → aspirador de água</text>
+  </svg>

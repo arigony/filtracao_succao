@@ -1,0 +1,73 @@
+[
+  {
+    "id": "wrong-flask",
+    "title": "Frasco inadequado",
+    "observation": "O estudante escolheu um Erlenmeyer comum e o deixou sem estabilização.",
+    "risk": "Vidro inadequado pode falhar sob diferença de pressão, e a mangueira pode tombar o frasco.",
+    "principle": "A filtração exige frasco lateral de parede espessa e estabilização mecânica suave.",
+    "correction": "Substituir pelo kitassato de parede espessa e prender seu gargalo ao suporte.",
+    "pieceId": "filter-flask",
+    "choices": [
+      {"label": "Trocar por kitassato e estabilizar", "correct": true},
+      {"label": "Aumentar o fluxo de água", "correct": false},
+      {"label": "Adicionar outro papel-filtro", "correct": false}
+    ]
+  },
+  {
+    "id": "missing-trap",
+    "title": "Armadilha omitida",
+    "observation": "A mangueira liga o kitassato diretamente ao aspirador de água.",
+    "risk": "Mudanças de pressão podem levar água ao filtrado ou contaminante à linha de água.",
+    "principle": "A armadilha interrompe o caminho direto de líquidos entre aparato e fonte de vácuo.",
+    "correction": "Inserir a armadilha com respiro entre o kitassato e o aspirador.",
+    "pieceId": "vacuum-trap",
+    "choices": [
+      {"label": "Inserir uma armadilha com respiro", "correct": true},
+      {"label": "Usar mangueira mais fina", "correct": false},
+      {"label": "Inclinar o kitassato", "correct": false}
+    ]
+  },
+  {
+    "id": "paper-gap",
+    "title": "Papel mal colocado",
+    "observation": "O papel é pequeno, está arqueado para cima e deixa orifícios expostos.",
+    "risk": "Cristais podem contornar a borda e contaminar o filtrado.",
+    "principle": "O papel deve cobrir toda a placa, com a concavidade voltada para baixo.",
+    "correction": "Usar disco do tamanho correto, concavidade para baixo e superfície sem bordas levantadas.",
+    "pieceId": "filter-paper",
+    "choices": [
+      {"label": "Cobrir os orifícios com papel correto", "correct": true},
+      {"label": "Aumentar a quantidade de mistura", "correct": false},
+      {"label": "Remover o adaptador", "correct": false}
+    ]
+  },
+  {
+    "id": "dry-paper",
+    "title": "Mistura sobre papel seco",
+    "observation": "A suspensão começou a ser derramada antes de molhar e assentar o papel.",
+    "risk": "A borda pode levantar e permitir perda de sólido para o filtrado.",
+    "principle": "Solvente frio e sucção assentam o papel e criam uma vedação uniforme.",
+    "correction": "Interromper, posicionar papel limpo, aplicar sucção e molhá-lo antes da mistura.",
+    "pieceId": "filter-paper",
+    "choices": [
+      {"label": "Molhar e assentar antes de transferir", "correct": true},
+      {"label": "Pressionar o sólido com força", "correct": false},
+      {"label": "Desligar a sucção durante toda a filtração", "correct": false}
+    ]
+  },
+  {
+    "id": "closed-shutdown",
+    "title": "Desligamento com sistema fechado",
+    "observation": "O aspirador foi desligado sem abrir o respiro da armadilha.",
+    "risk": "Pode ocorrer retroaspiração de água para o circuito e para o filtrado.",
+    "principle": "Igualar a pressão com a atmosfera elimina a força que puxa líquido de volta.",
+    "correction": "Abrir o respiro ou desconectar o vácuo antes de desligar o aspirador.",
+    "pieceId": "vent-clamp",
+    "choices": [
+      {"label": "Abrir para a atmosfera primeiro", "correct": true},
+      {"label": "Tampar o Büchner", "correct": false},
+      {"label": "Aquecer a armadilha", "correct": false}
+    ]
+  }
+]
+
